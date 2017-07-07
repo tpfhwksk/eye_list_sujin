@@ -38,14 +38,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="151"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pano01" translatesAutoresizingMaskIntoConstraints="NO" id="5M4-dq-cZf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="per-NN-dBv" customClass="TableViewCell_UIView" customModule="list_up" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="pic_imageView" destination="5M4-dq-cZf" id="W2u-CT-h8p"/>
+                                    <outlet property="pic_View" destination="per-NN-dBv" id="hvH-F4-76w"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -57,10 +58,35 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mBA-Hk-b5s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="168.80000000000001" y="-9.4452773613193415"/>
+            <point key="canvasLocation" x="-436" y="-13"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="act-j5-1l8">
+            <objects>
+                <tableViewController id="jyr-OL-xCj" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9C3-Kl-RjY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jYe-t1-Pep">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jYe-t1-Pep" id="gxl-wx-nNC">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jyr-OL-xCj" id="CE1-vV-iXN"/>
+                            <outlet property="delegate" destination="jyr-OL-xCj" id="96y-ue-Vu1"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aQd-5U-sdY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="830" y="-13"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="pano01" width="1920" height="689"/>
-    </resources>
 </document>

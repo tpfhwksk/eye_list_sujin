@@ -7,8 +7,52 @@
 //
 
 import UIKit
+import Metal
 
 class list_controller: UITableViewController {
+    
+    // add
+    
+    lazy var device: MTLDevice = {
+        guard let device = MTLCreateSystemDefaultDevice() else {
+            fatalError("Failed to create MTLDevice")
+        }
+        return device
+    }()
+    
+    weak var panoramaView: PanoramaView?
+    
+    private func loadPanoramaView(image: String) {
+        #if arch(arm) || arch(arm64)
+            let panoramaView = PanoramaView(frame: view.bounds, device: device)
+        #else
+            let panoramaView = PanoramaView(frame: view.bounds) // iOS Simulator
+        #endif
+        panoramaView.setNeedsResetRotation()
+        panoramaView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(panoramaView)
+        
+        // fill parent view
+        let constraints: [NSLayoutConstraint] = [
+            panoramaView.topAnchor.constraint(equalTo: view.topAnchor),
+            panoramaView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            panoramaView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            panoramaView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+        
+        // double tap to reset rotation
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.setNeedsResetRotation(_:)))
+        doubleTapGestureRecognizer.numberOfTapsRequired = 2
+        panoramaView.addGestureRecognizer(doubleTapGestureRecognizer)
+        
+        self.panoramaView = panoramaView
+        
+        panoramaView.load(UIImage(named: image)!, format: .mono)
+    }
+    
+    // add end
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +86,10 @@ class list_controller: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pic_cell", for: indexPath) as! pic_TableViewCell
         
         let tmp = tmp_list[indexPath.row]
-        cell.pic_imageView.image = UIImage(named: tmp)
+        
+        cell.pic_View.loadPanoramaView(image: tmp)
+        //cell.pic_imageView.image = UIImage(named: tmp)
+        
         
 
         return cell

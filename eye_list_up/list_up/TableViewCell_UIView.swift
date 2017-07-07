@@ -1,21 +1,25 @@
 //
-//  pic_TableViewCell.swift
+//  TableViewCell_UIView.swift
 //  list_up
 //
-//  Created by eyexpo on 2017-07-06.
+//  Created by eyexpo on 2017-07-07.
 //  Copyright © 2017 eyexpo. All rights reserved.
 //
 
 import UIKit
 import Metal
 
-class pic_TableViewCell: UITableViewCell {
-    
+class TableViewCell_UIView: UIView {
 
-    @IBOutlet weak var pic_View: TableViewCell_UIView!
-
-    
     /*
+    // Only override draw() if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    override func draw(_ rect: CGRect) {
+        // Drawing code
+    }
+    */
+    
+    var image_name:String = ""
     
     lazy var device: MTLDevice = {
         guard let device = MTLCreateSystemDefaultDevice() else {
@@ -26,22 +30,22 @@ class pic_TableViewCell: UITableViewCell {
     
     weak var panoramaView: PanoramaView?
     
-    private func loadPanoramaView(image: String) {
+    func loadPanoramaView(image: String) {
         #if arch(arm) || arch(arm64)
             let panoramaView = PanoramaView(frame: view.bounds, device: device)
         #else
-            let panoramaView = PanoramaView(frame: view.bounds) // iOS Simulator
+            let panoramaView = PanoramaView(frame: self.bounds) // iOS Simulator
         #endif
         panoramaView.setNeedsResetRotation()
         panoramaView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(panoramaView)
+        self.addSubview(panoramaView)
         
         // fill parent view
         let constraints: [NSLayoutConstraint] = [
-            panoramaView.topAnchor.constraint(equalTo: view.topAnchor),
-            panoramaView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            panoramaView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            panoramaView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            panoramaView.topAnchor.constraint(equalTo: self.topAnchor),
+            panoramaView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            panoramaView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            panoramaView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
         
@@ -54,20 +58,6 @@ class pic_TableViewCell: UITableViewCell {
         
         panoramaView.load(UIImage(named: image)!, format: .mono)
     }
-    
-    */
-
-    
-    override func awakeFromNib() {
-        
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+   
 
 }
