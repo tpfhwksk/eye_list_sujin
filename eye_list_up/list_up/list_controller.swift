@@ -48,6 +48,7 @@ class list_controller: UITableViewController {
         
         self.panoramaView = panoramaView
         
+        
         panoramaView.load(UIImage(named: image)!, format: .mono)
     }
     
@@ -131,14 +132,19 @@ class list_controller: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "detail_segue" {
+            if let destination = segue.destination as? detail_ViewController {
+                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
+                    destination.image_name = tmp_list[selectedIndex]
+                }
+            }
+        }
     }
-    */
+    
 
 }

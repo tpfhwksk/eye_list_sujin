@@ -8,6 +8,7 @@
 
 import UIKit
 import Metal
+import CoreMotion
 
 class TableViewCell_UIView: UIView {
 
@@ -51,10 +52,34 @@ class TableViewCell_UIView: UIView {
         
         // double tap to reset rotation
         let doubleTapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.setNeedsResetRotation(_:)))
+        
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(doubleTapGestureRecognizer)
         
+        
         self.panoramaView = panoramaView
+        // modify
+        var motionManager = CMMotionManager()
+        guard motionManager.isDeviceMotionAvailable else {return}
+        motionManager.deviceMotionUpdateInterval = 0.015
+        motionManager.startDeviceMotionUpdates(using: .xArbitraryZVertical, to: OperationQueue.main, withHandler: {[weak self] (motionData, error) in
+            guard let panoramaView = self else {return}
+            
+            let motionData = motionData
+            
+            let rm = motionData?.attitude.rotationMatrix
+            var userHeading = .pi - atan2((rm?.m32)!, (rm?.m31)!)
+            userHeading += .pi/2
+            
+            
+                // Use quaternions when in spherical mode to prevent gimbal lock
+            panoramaView.cameraNode.orientation = motionData.orientation()
+        
+            panoramaView.reportMovement(CGFloat(userHeading), panoramaView.xFov.toRadians())
+        })
+        
+        // ---*---
+        
         
         panoramaView.load(UIImage(named: image)!, format: .mono)
     }
