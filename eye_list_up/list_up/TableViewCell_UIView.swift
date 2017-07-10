@@ -59,6 +59,7 @@ class TableViewCell_UIView: UIView {
         
         self.panoramaView = panoramaView
         // modify
+        /*
         var motionManager = CMMotionManager()
         guard motionManager.isDeviceMotionAvailable else {return}
         motionManager.deviceMotionUpdateInterval = 0.015
@@ -77,7 +78,7 @@ class TableViewCell_UIView: UIView {
         
             panoramaView.reportMovement(CGFloat(userHeading), panoramaView.xFov.toRadians())
         })
-        
+        */
         // ---*---
         
         
