@@ -1,15 +1,15 @@
 //
-//  panoramaView.swift
+//  panoramaView_detail.swift
 //  list_up
 //
-//  Created by eyexpo on 2017-07-06.
+//  Created by eliza on 2017-07-11.
 //  Copyright © 2017 eyexpo. All rights reserved.
 //
 
 import UIKit
 import SceneKit
 
-public final class PanoramaView: UIView, SceneLoadable {
+public final class PanoramaView_detail: UIView, SceneLoadable {
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public let device: MTLDevice
     #endif
@@ -28,16 +28,15 @@ public final class PanoramaView: UIView, SceneLoadable {
     public weak var sceneRendererDelegate: SCNSceneRendererDelegate?
     
     
-    
     public lazy var orientationNode: OrientationNode = {
         let node = OrientationNode()
         let mask = CategoryBitMask.all.subtracting(.rightEye)
         node.pointOfView.camera?.categoryBitMask = mask.rawValue
         return node
     }()
- 
- 
- 
+    
+    
+    
     lazy var scnView: SCNView = {
         #if (arch(arm) || arch(arm64)) && os(iOS)
             let view = SCNView(frame: self.bounds, options: [
@@ -56,17 +55,13 @@ public final class PanoramaView: UIView, SceneLoadable {
         return view
     }()
     
-    
-    // to integrated panGesture
-    
-    
-    fileprivate lazy var panGestureManager: PanoramaPanGestureManager = {
-        let manager = PanoramaPanGestureManager(rotationNode: self.orientationNode.userRotationNode)
-        manager.minimumVerticalRotationAngle = -60 / 180 * .pi
-        manager.maximumVerticalRotationAngle = 60 / 180 * .pi
-        return manager
-    }()
- 
+     fileprivate lazy var panGestureManager: PanoramaPanGestureManager = {
+     let manager = PanoramaPanGestureManager(rotationNode: self.orientationNode.userRotationNode)
+     manager.minimumVerticalRotationAngle = -60 / 180 * .pi
+     manager.maximumVerticalRotationAngle = 60 / 180 * .pi
+     return manager
+     }()
+     
     
     
     fileprivate lazy var interfaceOrientationUpdater: InterfaceOrientationUpdater = {
@@ -79,17 +74,15 @@ public final class PanoramaView: UIView, SceneLoadable {
     public init(frame: CGRect, device: MTLDevice) {
     self.device = device
     super.init(frame: frame)
-    addGestureRecognizer(panGestureManager.gestureRecognizer) // modify
-    //addGestureRecognizer(setGestureRecognizer())
+    addGestureRecognizer(self.panGestureManager.gestureRecognizer) // modify
     }
     #else
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        addGestureRecognizer(panGestureManager.gestureRecognizer) // modify
+        addGestureRecognizer(self.panGestureManager.gestureRecognizer) // modify
         //addGestureRecognizer(setGestureRecognizer())
     }
     #endif
- 
     
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -115,13 +108,13 @@ public final class PanoramaView: UIView, SceneLoadable {
     }
 }
 
-extension PanoramaView: ImageLoadable {}
+extension PanoramaView_detail: ImageLoadable {}
 
 #if (arch(arm) || arch(arm64)) && os(iOS)
-    extension PanoramaView: VideoLoadable {}
+    extension PanoramaView_detail: VideoLoadable {}
 #endif
 
-extension PanoramaView {
+extension PanoramaView_detail {
     public var sceneRenderer: SCNSceneRenderer {
         return scnView
     }
@@ -148,13 +141,9 @@ extension PanoramaView {
         return scnView.snapshot()
     }
     
-    
     public var panGestureRecognizer: UIPanGestureRecognizer {
         
-       // var x = setGestureRecognizer()
-        
-     //   return x
-        return panGestureManager.gestureRecognizer
+        return self.panGestureManager.gestureRecognizer
     }
     
     public func updateInterfaceOrientation() {
@@ -176,7 +165,7 @@ extension PanoramaView {
     }
 }
 
-extension PanoramaView: OrientationIndicatorDataSource {
+extension PanoramaView_detail: OrientationIndicatorDataSource {
     public var pointOfView: SCNNode? {
         return orientationNode.pointOfView
     }
@@ -186,7 +175,7 @@ extension PanoramaView: OrientationIndicatorDataSource {
     }
 }
 
-extension PanoramaView: SCNSceneRendererDelegate {
+extension PanoramaView_detail: SCNSceneRendererDelegate {
     public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         var disableActions = false
         
@@ -224,3 +213,4 @@ extension PanoramaView: SCNSceneRendererDelegate {
         sceneRendererDelegate?.renderer?(renderer, didRenderScene: scene, atTime: time)
     }
 }
+

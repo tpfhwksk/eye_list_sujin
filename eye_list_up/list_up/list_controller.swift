@@ -89,6 +89,9 @@ class list_controller: UITableViewController {
         let tmp = tmp_list[indexPath.row]
         
         cell.pic_View.loadPanoramaView(image: tmp)
+        //var tm = cell.pic_View.panoramaView?.orientationNode
+        
+        //cell.pic_View.panoramaView?.addGestureRecognizer()
         //cell.pic_imageView.image = UIImage(named: tmp)
         
         

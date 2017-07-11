@@ -20,13 +20,13 @@ class detail_ViewController: UIViewController {
         return device
     }()
     
-    weak var panoramaView: PanoramaView?
+    weak var panoramaView: PanoramaView_detail?
     
     private func loadPanoramaView() {
         #if arch(arm) || arch(arm64)
-            let panoramaView = PanoramaView(frame: view.bounds, device: device)
+            let panoramaView = PanoramaView_detail(frame: view.bounds, device: device)
         #else
-            let panoramaView = PanoramaView(frame: view.bounds) // iOS Simulator
+            let panoramaView = PanoramaView_detail(frame: view.bounds) // iOS Simulator
         #endif
         panoramaView.setNeedsResetRotation()
         panoramaView.translatesAutoresizingMaskIntoConstraints = false

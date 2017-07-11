@@ -57,6 +57,10 @@ class TableViewCell_UIView: UIView {
         panoramaView.addGestureRecognizer(doubleTapGestureRecognizer)
         
         
+        //
+       // panoramaView.addGestureRecognizer(setGestureRecognizer())
+        //
+        
         self.panoramaView = panoramaView
         // modify
         /*
