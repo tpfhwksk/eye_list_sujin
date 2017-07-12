@@ -10,6 +10,12 @@ import Foundation
 import SceneKit
 import UIKit
 
+var orientationNode: OrientationNode = {
+    let node = OrientationNode()
+    let mask = CategoryBitMask.all.subtracting(.rightEye)
+    node.pointOfView.camera?.categoryBitMask = mask.rawValue
+    return node
+}()
 
 /*
 var panGestureManager: PanoramaPanGestureManager = {

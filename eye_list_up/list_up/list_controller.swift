@@ -51,9 +51,6 @@ class list_controller: UITableViewController {
         
         panoramaView.load(UIImage(named: image)!, format: .mono)
     }
-    
-    // add end
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,17 +82,9 @@ class list_controller: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pic_cell", for: indexPath) as! pic_TableViewCell
-        
         let tmp = tmp_list[indexPath.row]
-        
         cell.pic_View.loadPanoramaView(image: tmp)
-        //var tm = cell.pic_View.panoramaView?.orientationNode
         
-        //cell.pic_View.panoramaView?.addGestureRecognizer()
-        //cell.pic_imageView.image = UIImage(named: tmp)
-        
-        
-
         return cell
     }
     

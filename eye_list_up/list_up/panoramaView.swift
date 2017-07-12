@@ -28,13 +28,14 @@ public final class PanoramaView: UIView, SceneLoadable {
     public weak var sceneRendererDelegate: SCNSceneRendererDelegate?
     
     
-    
+    /*
     public lazy var orientationNode: OrientationNode = {
         let node = OrientationNode()
         let mask = CategoryBitMask.all.subtracting(.rightEye)
         node.pointOfView.camera?.categoryBitMask = mask.rawValue
         return node
     }()
+ */
  
  
  
@@ -50,7 +51,7 @@ public final class PanoramaView: UIView, SceneLoadable {
         view.backgroundColor = .black
         view.isUserInteractionEnabled = false
         view.delegate = self
-        view.pointOfView = self.orientationNode.pointOfView
+        view.pointOfView = orientationNode.pointOfView
         view.isPlaying = true
         self.addSubview(view)
         return view
@@ -61,7 +62,7 @@ public final class PanoramaView: UIView, SceneLoadable {
     
     
     fileprivate lazy var panGestureManager: PanoramaPanGestureManager = {
-        let manager = PanoramaPanGestureManager(rotationNode: self.orientationNode.userRotationNode)
+        let manager = PanoramaPanGestureManager(rotationNode: orientationNode.userRotationNode)
         manager.minimumVerticalRotationAngle = -60 / 180 * .pi
         manager.maximumVerticalRotationAngle = 60 / 180 * .pi
         return manager
@@ -70,7 +71,7 @@ public final class PanoramaView: UIView, SceneLoadable {
     
     
     fileprivate lazy var interfaceOrientationUpdater: InterfaceOrientationUpdater = {
-        return InterfaceOrientationUpdater(orientationNode: self.orientationNode)
+        return InterfaceOrientationUpdater(orientationNode: orientationNode)
     }()
     
     
