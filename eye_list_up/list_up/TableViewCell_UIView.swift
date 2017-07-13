@@ -33,7 +33,7 @@ class TableViewCell_UIView: UIView {
     
     func loadPanoramaView(image: String) {
         #if arch(arm) || arch(arm64)
-            let panoramaView = PanoramaView(frame: view.bounds, device: device)
+            let panoramaView = PanoramaView(frame: self.bounds, device: device)
         #else
             let panoramaView = PanoramaView(frame: self.bounds) // iOS Simulator
         #endif
