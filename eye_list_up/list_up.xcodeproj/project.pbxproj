@@ -56,6 +56,8 @@
 		709ECA731F0F09BB00831CC6 /* SceneLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709ECA721F0F09BB00831CC6 /* SceneLoadable.swift */; };
 		C91CD8DA1F15704F0011D34F /* IntegratedPanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CD8D91F15704F0011D34F /* IntegratedPanGesture.swift */; };
 		C91CD8DC1F1575200011D34F /* panoramaView_detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CD8DB1F1575200011D34F /* panoramaView_detail.swift */; };
+		C9940B721F1D5EFB00F4A420 /* ResizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9940B711F1D5EFB00F4A420 /* ResizeImage.swift */; };
+		C9940B741F1D665800F4A420 /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9940B731F1D665800F4A420 /* testViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +134,8 @@
 		709ECA721F0F09BB00831CC6 /* SceneLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLoadable.swift; sourceTree = "<group>"; };
 		C91CD8D91F15704F0011D34F /* IntegratedPanGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegratedPanGesture.swift; sourceTree = "<group>"; };
 		C91CD8DB1F1575200011D34F /* panoramaView_detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = panoramaView_detail.swift; sourceTree = "<group>"; };
+		C9940B711F1D5EFB00F4A420 /* ResizeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizeImage.swift; sourceTree = "<group>"; };
+		C9940B731F1D665800F4A420 /* testViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = testViewController.swift; path = ../testViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +186,7 @@
 		709ECA121F0EF3A800831CC6 /* list_up */ = {
 			isa = PBXGroup;
 			children = (
+				C9940B731F1D665800F4A420 /* testViewController.swift */,
 				709ECA131F0EF3A800831CC6 /* AppDelegate.swift */,
 				709ECA151F0EF3A800831CC6 /* ViewController.swift */,
 				709ECA171F0EF3A800831CC6 /* Main.storyboard */,
@@ -231,6 +236,7 @@
 				701AC2A81F0FFA5B00DAFD89 /* VideoScene.swift */,
 				701AC2AA1F0FFA7600DAFD89 /* ViewerModel.swift */,
 				701AC2AC1F0FFA8F00DAFD89 /* ViewerParameters.swift */,
+				C9940B711F1D5EFB00F4A420 /* ResizeImage.swift */,
 			);
 			path = list_up;
 			sourceTree = "<group>";
@@ -403,9 +409,11 @@
 				709ECA611F0F07F000831CC6 /* OrientationIndicator.swift in Sources */,
 				709ECA161F0EF3A800831CC6 /* ViewController.swift in Sources */,
 				709ECA4E1F0F05FD00831CC6 /* Deprecations+Removals.swift in Sources */,
+				C9940B721F1D5EFB00F4A420 /* ResizeImage.swift in Sources */,
 				709ECA461F0EFB7A00831CC6 /* pic_TableViewCell.swift in Sources */,
 				709ECA421F0EF3ED00831CC6 /* list_controller.swift in Sources */,
 				701AC2991F0FF96D00DAFD89 /* SphericalMediaScene.swift in Sources */,
+				C9940B741F1D665800F4A420 /* testViewController.swift in Sources */,
 				C91CD8DA1F15704F0011D34F /* IntegratedPanGesture.swift in Sources */,
 				709ECA6F1F0F096500831CC6 /* Rotation+SceneKit.swift in Sources */,
 				701AC2AD1F0FFA8F00DAFD89 /* ViewerParameters.swift in Sources */,

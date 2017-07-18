@@ -85,8 +85,12 @@ class TableViewCell_UIView: UIView {
         */
         // ---*---
         
+        let resizeimage = ResizeImage(image: UIImage(named: image)!, targetSize: CGSize(100.0, 60.0))
+        //didn't work
         
-        panoramaView.load(UIImage(named: image)!, format: .mono)
+        //panoramaView.load(UIImage(named: image)!, format: .mono)
+        panoramaView.load(resizeimage, format: .mono)
+
     }
    
 

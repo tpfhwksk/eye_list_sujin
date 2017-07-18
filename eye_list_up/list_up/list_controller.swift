@@ -83,6 +83,10 @@ class list_controller: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pic_cell", for: indexPath) as! pic_TableViewCell
         let tmp = tmp_list[indexPath.row]
+        
+       // let resizeimage = ResizeImage(image: UIImage(named: tmp)!, targetSize: CGSize(300.0, 300.0))
+
+        
         cell.pic_View.loadPanoramaView(image: tmp)
         
         return cell
