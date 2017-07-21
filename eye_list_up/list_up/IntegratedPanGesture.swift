@@ -17,6 +17,27 @@ var orientationNode: OrientationNode = {
     return node
 }()
 
+var interfaceOrientationUpdater: InterfaceOrientationUpdater = {
+    return InterfaceOrientationUpdater(orientationNode: orientationNode)
+}()
+
+
+func updateInterfaceOrientation() {
+    interfaceOrientationUpdater.updateInterfaceOrientation()
+}
+
+func updateInterfaceOrientation(with transitionCoordinator: UIViewControllerTransitionCoordinator) {
+    interfaceOrientationUpdater.updateInterfaceOrientation(with: transitionCoordinator)
+}
+
+
+
+
+func setNeedsResetRotation(_ sender: Any?) {
+    setNeedsResetRotation(true)
+}
+
+
 /*
 var panGestureManager: PanoramaPanGestureManager = {
     let manager = PanoramaPanGestureManager(rotationNode: orientationNode.userRotationNode)

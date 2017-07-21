@@ -68,26 +68,28 @@ public final class PanoramaView: UIView, SceneLoadable {
         return manager
     }()
  
-    
+    /*
     
     fileprivate lazy var interfaceOrientationUpdater: InterfaceOrientationUpdater = {
         return InterfaceOrientationUpdater(orientationNode: orientationNode)
     }()
     
-    
+    */
     
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public init(frame: CGRect, device: MTLDevice) {
     self.device = device
     super.init(frame: frame)
     addGestureRecognizer(panGestureManager.gestureRecognizer) // modify
+        
     //addGestureRecognizer(setGestureRecognizer())
     }
     #else
     public override init(frame: CGRect) {
         super.init(frame: frame)
         addGestureRecognizer(panGestureManager.gestureRecognizer) // modify
-        //addGestureRecognizer(setGestureRecognizer())
+    
+    //addGestureRecognizer(setGestureRecognizer())
     }
     #endif
  
@@ -106,6 +108,8 @@ public final class PanoramaView: UIView, SceneLoadable {
         scnView.frame = bounds
     }
     
+    /*
+    
     public override func willMove(toWindow newWindow: UIWindow?) {
         if newWindow == nil {
             interfaceOrientationUpdater.stopAutomaticInterfaceOrientationUpdates()
@@ -114,6 +118,7 @@ public final class PanoramaView: UIView, SceneLoadable {
             interfaceOrientationUpdater.updateInterfaceOrientation()
         }
     }
+    */
 }
 
 extension PanoramaView: ImageLoadable {}
@@ -158,13 +163,18 @@ extension PanoramaView {
         return panGestureManager.gestureRecognizer
     }
     
+    /* ref for all interfaceorientation
+    
     public func updateInterfaceOrientation() {
         interfaceOrientationUpdater.updateInterfaceOrientation()
     }
+ 
     
     public func updateInterfaceOrientation(with transitionCoordinator: UIViewControllerTransitionCoordinator) {
         interfaceOrientationUpdater.updateInterfaceOrientation(with: transitionCoordinator)
     }
+ 
+ 
     
     public func setNeedsResetRotation(animated: Bool = false) {
         panGestureManager.stopAnimations()
@@ -174,6 +184,12 @@ extension PanoramaView {
     
     public func setNeedsResetRotation(_ sender: Any?) {
         setNeedsResetRotation(animated: true)
+    }
+ */
+    func setNeedsResetRotation(animated: Bool = false) {
+        panGestureManager.stopAnimations()
+        //setGestureRecognizer().stopAni
+        orientationNode.setNeedsResetRotation(animated: animated)
     }
 }
 
@@ -193,7 +209,7 @@ extension PanoramaView: SCNSceneRendererDelegate {
         
         if let provider = orientationNode.deviceOrientationProvider, provider.shouldWaitDeviceOrientation(atTime: time) {
             provider.waitDeviceOrientation(atTime: time)
-            disableActions = true
+            disableActions = false
         }
         
         SCNTransaction.lock()

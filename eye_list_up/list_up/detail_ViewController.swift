@@ -29,6 +29,7 @@ class detail_ViewController: UIViewController {
             let panoramaView = PanoramaView_detail(frame: view.bounds) // iOS Simulator
         #endif
         panoramaView.setNeedsResetRotation()
+        //setNeedsResetRotation()
         panoramaView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(panoramaView)
         
@@ -42,7 +43,7 @@ class detail_ViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
         
         // double tap to reset rotation
-        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.setNeedsResetRotation(_:)))
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView_detail.setNeedsResetRotation(_:)))
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(doubleTapGestureRecognizer)
         

@@ -51,10 +51,12 @@ class TableViewCell_UIView: UIView {
         NSLayoutConstraint.activate(constraints)
         
         // double tap to reset rotation
+        /*
         let doubleTapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.setNeedsResetRotation(_:)))
-        
+ 
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(doubleTapGestureRecognizer)
+ */
         
         
         //
@@ -85,11 +87,23 @@ class TableViewCell_UIView: UIView {
         */
         // ---*---
         
-        let resizeimage = ResizeImage(image: UIImage(named: image)!, targetSize: CGSize(100.0, 60.0))
+        let originImage = UIImage(named: image)!
+        //let resizeimage = ResizeImage(image: UIImage(named: image)!, targetSize: CGSize(100.0, 100.0))
+        let resizeimage_2 = UIImage(named: image)!.resizeWithWidth(width: 300)
+        let resizeimage_3 = UIImage(named: image)!.resizeWithPercent(percentage: 0.1)
+
+        let compressData = UIImageJPEGRepresentation(originImage, 0.5) //max value is 1.0 and minimum is 0.0
+        let compressedImage = UIImage(data: compressData!)
+
         //didn't work
         
         //panoramaView.load(UIImage(named: image)!, format: .mono)
-        panoramaView.load(resizeimage, format: .mono)
+        //panoramaView.load(resizeimage, format: .mono)
+        //panoramaView.load(resizeimage_2!, format: .mono)
+        panoramaView.load(compressedImage!, format: .mono)
+
+        
+        // * file size of image is not big deal. * //
 
     }
    
