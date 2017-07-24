@@ -9,10 +9,34 @@
 import UIKit
 import SceneKit
 
+var cnt: Int = 0
+
+struct pano_class {
+    var pano_list : [PanoramaView]
+    func updateDeviceOrientation(atTime time: TimeInterval = ProcessInfo.processInfo.systemUptime) {
+        // print("rotation calculating")
+        
+        //let startTime = CFAbsoluteTimeGetCurrent()
+        
+        
+        
+        guard let rotation = orientationNode.deviceOrientationProvider?.deviceOrientation(atTime: time) else {
+            return
+        }
+        orientationNode.deviceOrientationNode.orientation = rotation.scnQuaternion
+        
+        //let processTime = CFAbsoluteTimeGetCurrent() - startTime
+        //print("orientationNode.updateDeviceOrientation time = \(processTime)")
+    }
+
+}
+
 public final class PanoramaView: UIView, SceneLoadable {
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public let device: MTLDevice
     #endif
+    
+    var testing: String = ""
     
     public var scene: SCNScene? {
         get {
@@ -108,17 +132,19 @@ public final class PanoramaView: UIView, SceneLoadable {
         scnView.frame = bounds
     }
     
-    /*
+    
     
     public override func willMove(toWindow newWindow: UIWindow?) {
         if newWindow == nil {
             interfaceOrientationUpdater.stopAutomaticInterfaceOrientationUpdates()
         } else {
+           // print("willmover") is called once.
             interfaceOrientationUpdater.startAutomaticInterfaceOrientationUpdates()
             interfaceOrientationUpdater.updateInterfaceOrientation()
+            //print("willmove")
         }
     }
-    */
+    
 }
 
 extension PanoramaView: ImageLoadable {}
@@ -203,7 +229,10 @@ extension PanoramaView: OrientationIndicatorDataSource {
     }
 }
 
+
+// make one paranomaView as paranomaView_detail.
 extension PanoramaView: SCNSceneRendererDelegate {
+    
     public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         var disableActions = false
         
@@ -212,15 +241,26 @@ extension PanoramaView: SCNSceneRendererDelegate {
             disableActions = false
         }
         
+        //  why is this necessary?
+        
+        
         SCNTransaction.lock()
         SCNTransaction.begin()
         SCNTransaction.animationDuration = 1 / 15
+        //SCNTransaction.animationDuration = 1
+        //print("scnscenerenderedelegate") // called every second
+
         SCNTransaction.disableActions = disableActions
         
-        orientationNode.updateDeviceOrientation(atTime: time)
+        //print(time)
+        
+        orientationNode.updateDeviceOrientation(atTime: time) // ###^$#&##^#@^@ very very important
+        
+        
         
         SCNTransaction.commit()
         SCNTransaction.unlock()
+ 
         
         sceneRendererDelegate?.renderer?(renderer, updateAtTime: time)
     }

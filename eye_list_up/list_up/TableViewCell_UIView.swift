@@ -39,6 +39,7 @@ class TableViewCell_UIView: UIView {
         #endif
         panoramaView.setNeedsResetRotation()
         panoramaView.translatesAutoresizingMaskIntoConstraints = false
+        panoramaView.testing = image
         self.addSubview(panoramaView)
         
         // fill parent view
@@ -100,7 +101,8 @@ class TableViewCell_UIView: UIView {
         //panoramaView.load(UIImage(named: image)!, format: .mono)
         //panoramaView.load(resizeimage, format: .mono)
         //panoramaView.load(resizeimage_2!, format: .mono)
-        panoramaView.load(compressedImage!, format: .mono)
+        //panoramaView.load(compressedImage!, format: .mono)
+        panoramaView.load(originImage, format: .mono)
 
         
         // * file size of image is not big deal. * //

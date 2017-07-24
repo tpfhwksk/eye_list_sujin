@@ -9,11 +9,16 @@
 import UIKit
 import Metal
 
-class list_controller: UITableViewController {
+var pano : pano_class?
 
+class list_controller: UITableViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        pano?.pano_list.removeAll()
+        //interfaceOrientationUpdater.startAutomaticInterfaceOrientationUpdates()
+        //interfaceOrientationUpdater.updateInterfaceOrientation()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -36,7 +41,7 @@ class list_controller: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         //return tmp_list.count
-        return 5
+        return 3
     }
 
     
@@ -48,6 +53,9 @@ class list_controller: UITableViewController {
 
         
         cell.pic_View.loadPanoramaView(image: tmp)
+        
+        pano?.pano_list.append(cell.pic_View.panoramaView!)
+        
         
         return cell
     }

@@ -8,6 +8,8 @@
 
 import CoreMotion
 
+let motionManager = CMMotionManager()
+
 public protocol DeviceOrientationProvider {
     func deviceOrientation(atTime time: TimeInterval) -> Rotation?
     func shouldWaitDeviceOrientation(atTime time: TimeInterval) -> Bool
@@ -41,6 +43,8 @@ extension DeviceOrientationProvider {
     }
 }
 
+
+//have to execute only once.
 extension CMMotionManager: DeviceOrientationProvider {
     public func deviceOrientation(atTime time: TimeInterval) -> Rotation? {
         guard let motion = deviceMotion else {
@@ -76,7 +80,7 @@ extension CMMotionManager: DeviceOrientationProvider {
 }
 
 internal final class DefaultDeviceOrientationProvider: DeviceOrientationProvider {
-    private static let motionManager = CMMotionManager()
+    //private static let motionManager = CMMotionManager()
     
     private static let instanceCountQueue = DispatchQueue(label: "com.eje-c.MetalScope.DefaultDeviceOrientationProvider.instanceCountQueue")
     
@@ -114,10 +118,12 @@ internal final class DefaultDeviceOrientationProvider: DeviceOrientationProvider
     }
     
     func deviceOrientation(atTime time: TimeInterval) -> Rotation? {
-        return DefaultDeviceOrientationProvider.motionManager.deviceOrientation(atTime: time)
+        //return DefaultDeviceOrientationProvider.motionManager.deviceOrientation(atTime: time)
+        return motionManager.deviceOrientation(atTime: time)
     }
     
     func shouldWaitDeviceOrientation(atTime time: TimeInterval) -> Bool {
-        return DefaultDeviceOrientationProvider.motionManager.shouldWaitDeviceOrientation(atTime: time)
+        //return DefaultDeviceOrientationProvider.motionManager.shouldWaitDeviceOrientation(atTime: time)
+        return motionManager.shouldWaitDeviceOrientation(atTime: time)
     }
 }

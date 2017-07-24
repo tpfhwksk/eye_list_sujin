@@ -24,6 +24,7 @@ internal final class InterfaceOrientationUpdater {
     }
     
     func updateInterfaceOrientation() {
+        //print("update") once showing
         orientationNode.updateInterfaceOrientation()
     }
     
@@ -31,25 +32,46 @@ internal final class InterfaceOrientationUpdater {
         isTransitioning = true
         
         transitionCoordinator.animate(alongsideTransition: { context in
+            
+            
+            
             SCNTransaction.lock()
             SCNTransaction.begin()
             SCNTransaction.animationDuration = context.transitionDuration
             SCNTransaction.animationTimingFunction = context.completionCurve.caMediaTimingFunction
             SCNTransaction.disableActions = !context.isAnimated
+ 
+    
+                print("updateinterfaceorientation")
+            
             
             self.updateInterfaceOrientation()
             
+            
+            
             SCNTransaction.commit()
             SCNTransaction.unlock()
+ 
+ 
+ 
         }, completion: { _ in
             self.isTransitioning = false
         })
     }
     
     func startAutomaticInterfaceOrientationUpdates() {
+        //this part should be started only once. 
+        //now, every cell observe movement of device.
+        //if movement of device occurs, we just apply this to all cell.
+        
+        //let startTime = CFAbsoluteTimeGetCurrent()
+        
         guard deviceOrientationDidChangeNotificationObserver == nil else {
             return
         }
+        
+        print("move") 
+        //enter O
         
         UIDevice.current.beginGeneratingDeviceOrientationNotifications()
         
@@ -57,10 +79,15 @@ internal final class InterfaceOrientationUpdater {
             guard UIDevice.current.orientation.isValidInterfaceOrientation, self?.isTransitioning == false else {
                 return
             }
+            //print("auto") no show
             self?.updateInterfaceOrientation()
         }
         
         deviceOrientationDidChangeNotificationObserver = observer
+        
+       // let processTime = CFAbsoluteTimeGetCurrent() - startTime
+        //print("interfaceorientationupdator.startautomatic time = \(processTime)")
+
     }
     
     func stopAutomaticInterfaceOrientationUpdates() {

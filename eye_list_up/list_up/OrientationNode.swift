@@ -8,6 +8,8 @@
 
 import SceneKit
 
+var rotations: Rotation?
+
 public final class OrientationNode: SCNNode {
     let userRotationNode = SCNNode()
     let referenceRotationNode = SCNNode()
@@ -40,18 +42,40 @@ public final class OrientationNode: SCNNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // this method is called by all cells every second
     public func updateDeviceOrientation(atTime time: TimeInterval = ProcessInfo.processInfo.systemUptime) {
+       // print("rotation calculating")
+        
+        //let startTime = CFAbsoluteTimeGetCurrent()
+        
+        
+        
         guard let rotation = deviceOrientationProvider?.deviceOrientation(atTime: time) else {
+            
             return
         }
+        
         deviceOrientationNode.orientation = rotation.scnQuaternion
+        
+        //let processTime = CFAbsoluteTimeGetCurrent() - startTime
+        //print("orientationNode.updateDeviceOrientation time = \(processTime)")
     }
     
+    
+    //only one rotation needed? do we have to calculate "rotation" for all cells?
+    // does it occur only one time? 
     public func updateInterfaceOrientation(atTime time: TimeInterval = ProcessInfo.processInfo.systemUptime) {
+        print("rotation calculating")
+        
         guard let rotation = interfaceOrientationProvider?.interfaceOrientation(atTime: time) else {
             return
         }
+ 
+        //rotation = interfaceOrientationProvider?.interfaceOrientation(atTime: time)
+       // let rotations_tmp = interfaceOrientationProvider?.interfaceOrientation(atTime: time)
+      
         interfaceOrientationNode.orientation = rotation.scnQuaternion
+        //interfaceOrientationNode.orientation = (rotations?.scnQuaternion)!
     }
     
     public func resetRotation() {
