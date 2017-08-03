@@ -9,6 +9,9 @@
 import UIKit
 import SceneKit
 
+// not modified. it's original PanoramaView.swift
+// it presents one image which user clicked out of images of tableview.
+
 public final class PanoramaView_detail: UIView, SceneLoadable {
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public let device: MTLDevice
@@ -103,6 +106,8 @@ public final class PanoramaView_detail: UIView, SceneLoadable {
         super.layoutSubviews()
         
         scnView.frame = bounds
+
+    
     }
     
     public override func willMove(toWindow newWindow: UIWindow?) {

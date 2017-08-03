@@ -15,15 +15,7 @@ class list_controller: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        pano?.pano_list.removeAll()
-        //interfaceOrientationUpdater.startAutomaticInterfaceOrientationUpdates()
-        //interfaceOrientationUpdater.updateInterfaceOrientation()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,7 +33,7 @@ class list_controller: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         //return tmp_list.count
-        return 3
+        return 5
     }
 
     
@@ -52,7 +44,9 @@ class list_controller: UITableViewController {
        // let resizeimage = ResizeImage(image: UIImage(named: tmp)!, targetSize: CGSize(300.0, 300.0))
 
         
-        cell.pic_View.loadPanoramaView(image: tmp)
+       // cell.pic_View.loadPanoramaView(image: tmp)
+         cell.pic_View.loadPanoramaView(image: tmp, compressQuality: 0.5)
+
         
         pano?.pano_list.append(cell.pic_View.panoramaView!)
         

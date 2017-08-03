@@ -44,11 +44,6 @@ public final class OrientationNode: SCNNode {
     
     // this method is called by all cells every second
     public func updateDeviceOrientation(atTime time: TimeInterval = ProcessInfo.processInfo.systemUptime) {
-       // print("rotation calculating")
-        
-        //let startTime = CFAbsoluteTimeGetCurrent()
-        
-        
         
         guard let rotation = deviceOrientationProvider?.deviceOrientation(atTime: time) else {
             
@@ -56,9 +51,6 @@ public final class OrientationNode: SCNNode {
         }
         
         deviceOrientationNode.orientation = rotation.scnQuaternion
-        
-        //let processTime = CFAbsoluteTimeGetCurrent() - startTime
-        //print("orientationNode.updateDeviceOrientation time = \(processTime)")
     }
     
     
@@ -70,12 +62,8 @@ public final class OrientationNode: SCNNode {
         guard let rotation = interfaceOrientationProvider?.interfaceOrientation(atTime: time) else {
             return
         }
- 
-        //rotation = interfaceOrientationProvider?.interfaceOrientation(atTime: time)
-       // let rotations_tmp = interfaceOrientationProvider?.interfaceOrientation(atTime: time)
-      
+        
         interfaceOrientationNode.orientation = rotation.scnQuaternion
-        //interfaceOrientationNode.orientation = (rotations?.scnQuaternion)!
     }
     
     public func resetRotation() {

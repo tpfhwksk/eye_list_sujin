@@ -31,7 +31,7 @@ class TableViewCell_UIView: UIView {
     
     weak var panoramaView: PanoramaView?
     
-    func loadPanoramaView(image: String) {
+    func loadPanoramaView(image: String, compressQuality: Float = 1.0) {
         #if arch(arm) || arch(arm64)
             let panoramaView = PanoramaView(frame: self.bounds, device: device)
         #else
@@ -57,57 +57,18 @@ class TableViewCell_UIView: UIView {
  
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(doubleTapGestureRecognizer)
- */
-        
-        
-        //
-       // panoramaView.addGestureRecognizer(setGestureRecognizer())
-        //
+        */
         
         self.panoramaView = panoramaView
-        // modify
-        /*
-        var motionManager = CMMotionManager()
-        guard motionManager.isDeviceMotionAvailable else {return}
-        motionManager.deviceMotionUpdateInterval = 0.015
-        motionManager.startDeviceMotionUpdates(using: .xArbitraryZVertical, to: OperationQueue.main, withHandler: {[weak self] (motionData, error) in
-            guard let panoramaView = self else {return}
-            
-            let motionData = motionData
-            
-            let rm = motionData?.attitude.rotationMatrix
-            var userHeading = .pi - atan2((rm?.m32)!, (rm?.m31)!)
-            userHeading += .pi/2
-            
-            
-                // Use quaternions when in spherical mode to prevent gimbal lock
-            panoramaView.cameraNode.orientation = motionData.orientation()
-        
-            panoramaView.reportMovement(CGFloat(userHeading), panoramaView.xFov.toRadians())
-        })
-        */
-        // ---*---
-        
+     
         let originImage = UIImage(named: image)!
-        //let resizeimage = ResizeImage(image: UIImage(named: image)!, targetSize: CGSize(100.0, 100.0))
-        let resizeimage_2 = UIImage(named: image)!.resizeWithWidth(width: 300)
+        
         let resizeimage_3 = UIImage(named: image)!.resizeWithPercent(percentage: 0.1)
 
-        let compressData = UIImageJPEGRepresentation(originImage, 0.5) //max value is 1.0 and minimum is 0.0
+        let compressData = UIImageJPEGRepresentation(originImage, CGFloat(compressQuality)) //max value is 1.0 and minimum is 0.0
         let compressedImage = UIImage(data: compressData!)
-
-        //didn't work
+        panoramaView.load(compressedImage!, format: .mono)
         
-        //panoramaView.load(UIImage(named: image)!, format: .mono)
-        //panoramaView.load(resizeimage, format: .mono)
-        //panoramaView.load(resizeimage_2!, format: .mono)
-        //panoramaView.load(compressedImage!, format: .mono)
-        panoramaView.load(originImage, format: .mono)
-
-        
-        // * file size of image is not big deal. * //
-
     }
-   
 
 }

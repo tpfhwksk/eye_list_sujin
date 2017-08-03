@@ -14,19 +14,11 @@ var cnt: Int = 0
 struct pano_class {
     var pano_list : [PanoramaView]
     func updateDeviceOrientation(atTime time: TimeInterval = ProcessInfo.processInfo.systemUptime) {
-        // print("rotation calculating")
-        
-        //let startTime = CFAbsoluteTimeGetCurrent()
-        
-        
         
         guard let rotation = orientationNode.deviceOrientationProvider?.deviceOrientation(atTime: time) else {
             return
         }
         orientationNode.deviceOrientationNode.orientation = rotation.scnQuaternion
-        
-        //let processTime = CFAbsoluteTimeGetCurrent() - startTime
-        //print("orientationNode.updateDeviceOrientation time = \(processTime)")
     }
 
 }
@@ -182,10 +174,7 @@ extension PanoramaView {
     
     
     public var panGestureRecognizer: UIPanGestureRecognizer {
-        
-       // var x = setGestureRecognizer()
-        
-     //   return x
+   
         return panGestureManager.gestureRecognizer
     }
     
@@ -214,7 +203,6 @@ extension PanoramaView {
  */
     func setNeedsResetRotation(animated: Bool = false) {
         panGestureManager.stopAnimations()
-        //setGestureRecognizer().stopAni
         orientationNode.setNeedsResetRotation(animated: animated)
     }
 }
@@ -251,9 +239,7 @@ extension PanoramaView: SCNSceneRendererDelegate {
         //print("scnscenerenderedelegate") // called every second
 
         SCNTransaction.disableActions = disableActions
-        
-        //print(time)
-        
+    
         orientationNode.updateDeviceOrientation(atTime: time) // ###^$#&##^#@^@ very very important
         
         

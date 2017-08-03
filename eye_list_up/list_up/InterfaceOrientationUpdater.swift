@@ -64,8 +64,6 @@ internal final class InterfaceOrientationUpdater {
         //now, every cell observe movement of device.
         //if movement of device occurs, we just apply this to all cell.
         
-        //let startTime = CFAbsoluteTimeGetCurrent()
-        
         guard deviceOrientationDidChangeNotificationObserver == nil else {
             return
         }
@@ -84,10 +82,6 @@ internal final class InterfaceOrientationUpdater {
         }
         
         deviceOrientationDidChangeNotificationObserver = observer
-        
-       // let processTime = CFAbsoluteTimeGetCurrent() - startTime
-        //print("interfaceorientationupdator.startautomatic time = \(processTime)")
-
     }
     
     func stopAutomaticInterfaceOrientationUpdates() {

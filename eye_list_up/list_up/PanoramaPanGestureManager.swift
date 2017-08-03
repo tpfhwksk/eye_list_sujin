@@ -148,7 +148,7 @@ private final class AdvancedPanGestureRecognizer: UIPanGestureRecognizer {
     var earlyTouchEventHandler: (() -> Void)?
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
-        super.touchesBegan(touches, with: event)
+        super.touchesBegan(touches, with: event) // recognize touch
         
         if state == .possible {
             earlyTouchEventHandler?()
