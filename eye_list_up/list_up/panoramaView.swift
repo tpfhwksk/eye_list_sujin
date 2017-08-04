@@ -11,19 +11,7 @@ import SceneKit
 
 var cnt: Int = 0
 
-struct pano_class {
-    var pano_list : [PanoramaView]
-    func updateDeviceOrientation(atTime time: TimeInterval = ProcessInfo.processInfo.systemUptime) {
-        
-        guard let rotation = orientationNode.deviceOrientationProvider?.deviceOrientation(atTime: time) else {
-            return
-        }
-        orientationNode.deviceOrientationNode.orientation = rotation.scnQuaternion
-    }
-
-}
-
-public final class PanoramaView: UIView, SceneLoadable {
+public class PanoramaView: UIView, SceneLoadable {
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public let device: MTLDevice
     #endif
@@ -97,15 +85,12 @@ public final class PanoramaView: UIView, SceneLoadable {
     self.device = device
     super.init(frame: frame)
     addGestureRecognizer(panGestureManager.gestureRecognizer) // modify
-        
-    //addGestureRecognizer(setGestureRecognizer())
+    
     }
     #else
     public override init(frame: CGRect) {
         super.init(frame: frame)
         addGestureRecognizer(panGestureManager.gestureRecognizer) // modify
-    
-    //addGestureRecognizer(setGestureRecognizer())
     }
     #endif
  
@@ -133,7 +118,6 @@ public final class PanoramaView: UIView, SceneLoadable {
            // print("willmover") is called once.
             interfaceOrientationUpdater.startAutomaticInterfaceOrientationUpdates()
             interfaceOrientationUpdater.updateInterfaceOrientation()
-            //print("willmove")
         }
     }
     

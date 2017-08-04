@@ -30,9 +30,6 @@ func updateInterfaceOrientation(with transitionCoordinator: UIViewControllerTran
     interfaceOrientationUpdater.updateInterfaceOrientation(with: transitionCoordinator)
 }
 
-
-
-
 func setNeedsResetRotation(_ sender: Any?) {
     setNeedsResetRotation(true)
 }

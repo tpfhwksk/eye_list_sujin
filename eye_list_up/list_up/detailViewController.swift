@@ -9,7 +9,7 @@
 import UIKit
 import Metal
 
-class detail_ViewController: UIViewController {
+class detailViewController: UIViewController {
     
     var image_name:String = ""
 
@@ -20,13 +20,13 @@ class detail_ViewController: UIViewController {
         return device
     }()
     
-    weak var panoramaView: PanoramaView_detail?
+    weak var panoramaView: PanoramaViewDetail?
     
     private func loadPanoramaView() {
         #if arch(arm) || arch(arm64)
-            let panoramaView = PanoramaView_detail(frame: view.bounds, device: device)
+            let panoramaView = PanoramaViewDetail(frame: view.bounds, device: device)
         #else
-            let panoramaView = PanoramaView_detail(frame: view.bounds) // iOS Simulator
+            let panoramaView = PanoramaViewDetail(frame: view.bounds) // iOS Simulator
         #endif
         panoramaView.setNeedsResetRotation()
         //setNeedsResetRotation()
@@ -43,7 +43,7 @@ class detail_ViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
         
         // double tap to reset rotation
-        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView_detail.setNeedsResetRotation(_:)))
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaViewDetail.setNeedsResetRotation(_:)))
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(doubleTapGestureRecognizer)
         

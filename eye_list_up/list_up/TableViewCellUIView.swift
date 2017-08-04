@@ -10,7 +10,7 @@ import UIKit
 import Metal
 import CoreMotion
 
-class TableViewCell_UIView: UIView {
+class TableViewCellUIView: UIView {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -60,11 +60,11 @@ class TableViewCell_UIView: UIView {
         */
         
         self.panoramaView = panoramaView
-     
+            
+        //let resizeimage = UIImage(named: image)!.resizeWithPercent(percentage: 0.1)
+
         let originImage = UIImage(named: image)!
         
-        let resizeimage_3 = UIImage(named: image)!.resizeWithPercent(percentage: 0.1)
-
         let compressData = UIImageJPEGRepresentation(originImage, CGFloat(compressQuality)) //max value is 1.0 and minimum is 0.0
         let compressedImage = UIImage(data: compressData!)
         panoramaView.load(compressedImage!, format: .mono)

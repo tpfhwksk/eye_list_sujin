@@ -52,10 +52,10 @@
             </objects>
             <point key="canvasLocation" x="-986" y="658"/>
         </scene>
-        <!--List controller-->
+        <!--Paranoma Table View Controller-->
         <scene sceneID="Xyi-xg-QA3">
             <objects>
-                <tableViewController id="643-dB-iva" customClass="list_controller" customModule="list_up" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="643-dB-iva" customClass="ParanomaTableViewController" customModule="list_up" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" id="IdB-k4-dGq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -74,14 +74,14 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pic_cell" rowHeight="150" id="wqM-GQ-icr" customClass="pic_TableViewCell" customModule="list_up" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pic_cell" rowHeight="150" id="wqM-GQ-icr" customClass="picTableViewCell" customModule="list_up" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="78" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wqM-GQ-icr" id="NQg-3y-PIq">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="per-NN-dBv" customClass="TableViewCell_UIView" customModule="list_up" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="per-NN-dBv" customClass="TableViewCellUIView" customModule="list_up" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -108,7 +108,7 @@
         <!--Detail View Controller-->
         <scene sceneID="7uT-Fm-bTu">
             <objects>
-                <viewController id="v3S-c4-UiQ" customClass="detail_ViewController" customModule="list_up" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="v3S-c4-UiQ" customClass="detailViewController" customModule="list_up" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bdy-YX-vuC"/>
                         <viewControllerLayoutGuide type="bottom" id="80F-Qk-ATk"/>

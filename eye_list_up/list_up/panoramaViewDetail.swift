@@ -12,7 +12,7 @@ import SceneKit
 // not modified. it's original PanoramaView.swift
 // it presents one image which user clicked out of images of tableview.
 
-public final class PanoramaView_detail: UIView, SceneLoadable {
+public final class PanoramaViewDetail: UIView, SceneLoadable {
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public let device: MTLDevice
     #endif
@@ -120,13 +120,13 @@ public final class PanoramaView_detail: UIView, SceneLoadable {
     }
 }
 
-extension PanoramaView_detail: ImageLoadable {}
+extension PanoramaViewDetail: ImageLoadable {}
 
 #if (arch(arm) || arch(arm64)) && os(iOS)
-    extension PanoramaView_detail: VideoLoadable {}
+    extension PanoramaViewDetail: VideoLoadable {}
 #endif
 
-extension PanoramaView_detail {
+extension PanoramaViewDetail {
     public var sceneRenderer: SCNSceneRenderer {
         return scnView
     }
@@ -168,7 +168,6 @@ extension PanoramaView_detail {
     
     public func setNeedsResetRotation(animated: Bool = false) {
         panGestureManager.stopAnimations()
-        //setGestureRecognizer().stopAni
         orientationNode.setNeedsResetRotation(animated: animated)
     }
     
@@ -177,7 +176,7 @@ extension PanoramaView_detail {
     }
 }
 
-extension PanoramaView_detail: OrientationIndicatorDataSource {
+extension PanoramaViewDetail: OrientationIndicatorDataSource {
     public var pointOfView: SCNNode? {
         return orientationNode.pointOfView
     }
@@ -187,7 +186,7 @@ extension PanoramaView_detail: OrientationIndicatorDataSource {
     }
 }
 
-extension PanoramaView_detail: SCNSceneRendererDelegate {
+extension PanoramaViewDetail: SCNSceneRendererDelegate {
     public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         var disableActions = false
         
